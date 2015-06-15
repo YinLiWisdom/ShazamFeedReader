@@ -1,14 +1,14 @@
 package com.yinli.shazamfeedreader;
 
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
+import com.yinli.shazamfeedreader.adapters.ListAdapter;
 import com.yinli.shazamfeedreader.utils.XMLHelper;
 
 import org.xmlpull.v1.XmlPullParserException;
@@ -22,15 +22,21 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String URL = "http://www.shazam.com/music/web/taglistrss?mode=xml&userName=shazam";
 
-    private RecyclerView recyclerView;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
+        mAdapter = new ListAdapter(new String[] {"test1", "test2","test1", "test2","test1", "test2","test1", "test2","test1", "test2"});
+        mRecyclerView.setAdapter(mAdapter);
 
         loadData();
     }
