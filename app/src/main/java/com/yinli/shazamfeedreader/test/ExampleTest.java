@@ -1,4 +1,4 @@
-package com.yinli.shazamfeedreader;
+package com.yinli.shazamfeedreader.test;
 
 import android.test.InstrumentationTestCase;
 
